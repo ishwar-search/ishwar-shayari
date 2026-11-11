@@ -4,127 +4,312 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#17152b">
+<meta name="theme-color" content="#171329">
 <title>Ishwar Shayari | हर एहसास, अल्फ़ाज़ों में</title>
-<meta name="description" content="Ishwar Shayari पर पढ़ें प्यार, दर्द, दोस्ती, भक्ति और हर एहसास की खूबसूरत शायरी।">
+<meta name="description" content="Ishwar Shayari पर पढ़ें प्यार, दर्द, दोस्ती, भक्ति, मोटिवेशन और हर एहसास की खूबसूरत हिंदी शायरी।">
+<meta name="keywords" content="Hindi Shayari, Love Shayari, Sad Shayari, Ishwar Shayari">
+<meta property="og:title" content="Ishwar Shayari">
+<meta property="og:description" content="हर एहसास, अल्फ़ाज़ों में...">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root{
+ --pink:#ff1684;
+ --purple:#8d32df;
+ --navy:#171329;
+ --dark:#100e20;
+ --white:#fff;
+ --muted:#c9c3dc;
+ --light:#f5f3fa;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--pink:#ff1684;--purple:#8d32df;--navy:#17152b}
-body{font-family:'Hind',sans-serif;background:#f5f3fa;color:#211b32}
-button,input{font:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+ font-family:'Hind',sans-serif;
+ background:var(--light);
+ color:#211b32;
+}
+button,input,textarea{font:inherit}
 button{cursor:pointer}
-.topbar{background:linear-gradient(110deg,#17152b,#292044);color:white;padding:12px 3%;min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20;box-shadow:0 4px 20px #100e2030}
-.brand{display:flex;align-items:center;gap:9px}
-.brand-icon{font-size:42px}
-.brand-name{font-family:Poppins,sans-serif;font-size:25px;font-weight:800;font-style:italic}
+button:focus-visible,a:focus-visible,input:focus-visible{
+ outline:3px solid #ff72b6;
+ outline-offset:3px;
+}
+.topbar{
+ position:sticky;top:0;z-index:50;
+ min-height:78px;padding:10px 3%;
+ display:flex;align-items:center;justify-content:space-between;gap:15px;
+ color:white;
+ background:linear-gradient(110deg,#171329,#292044);
+ box-shadow:0 4px 20px #100e2030;
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{width:58px;height:58px;object-fit:contain;border-radius:12px}
+.brand-name{
+ font:italic 800 24px Poppins,sans-serif;
+ white-space:nowrap;
+}
 .brand-name span{color:#ff3b9d}
 .tagline{font-size:12px;color:#eee}
-.nav{display:flex;gap:7px}
-.nav button{border:0;color:white;background:transparent;padding:10px;border-radius:12px}
+.nav{display:flex;align-items:center;gap:6px}
+.nav button{
+ border:0;color:white;background:transparent;
+ padding:10px 13px;border-radius:12px;
+}
 .nav button:hover,.nav button.active{background:var(--pink)}
-.hero{padding:55px 5%;min-height:310px;color:white;background:linear-gradient(90deg,#151326 2%,#17152bce 48%,#17152b40),linear-gradient(125deg,#241d4c,#7d3b83,#f77c72);display:flex;align-items:center}
-.hero-content{max-width:650px}
-.hero h1{font:800 clamp(35px,5vw,62px) Poppins,sans-serif;margin:8px 0}
+.icon-button{
+ width:42px;height:42px;border:1px solid #ffffff35;
+ color:white;background:#ffffff12;border-radius:50%;
+ font-size:21px;
+}
+.hero{
+ min-height:340px;padding:55px 5%;
+ display:flex;align-items:center;color:white;
+ background:
+ linear-gradient(90deg,#151326 2%,#17152bdb 42%,#17152b55 100%),
+ linear-gradient(125deg,#241d4c,#7d3b83 55%,#f77c72);
+ position:relative;overflow:hidden;
+}
+.hero:after{
+ content:"";position:absolute;width:390px;height:390px;
+ right:5%;top:-180px;border-radius:50%;
+ background:radial-gradient(circle,#ffcf8c77,#ff5e9d15 65%,transparent 70%);
+}
+.hero-content{max-width:680px;position:relative;z-index:1}
+.hero-logo{width:75px;height:75px;object-fit:contain;margin-bottom:8px}
+.hero h1{font:800 clamp(34px,5vw,60px) Poppins,sans-serif;line-height:1.2}
 .hero h1 span{color:#ff4ca5}
-.hero h2{font-size:25px}
+.hero h2{font-size:25px;margin-top:10px}
 .hero p{font-size:18px;color:#f4eafa;margin:14px 0 22px}
-.searchbox{display:flex;background:white;border-radius:40px;padding:5px;max-width:570px}
-.searchbox input{flex:1;min-width:0;border:0;outline:0;padding:12px 18px;border-radius:40px}
-.searchbox button,.primary{background:linear-gradient(110deg,#ff1684,#c11bd4);border:0;color:white;border-radius:30px;padding:12px 25px;font-weight:700}
+.searchbox{
+ display:flex;background:white;border-radius:40px;padding:5px;
+ max-width:590px;box-shadow:0 8px 25px #0003;
+}
+.searchbox input{
+ flex:1;min-width:0;border:0;outline:0;
+ padding:12px 18px;border-radius:40px;color:#222;
+}
+.searchbox button,.primary{
+ border:0;color:white;border-radius:30px;
+ padding:12px 24px;font-weight:700;
+ background:linear-gradient(110deg,#ff1684,#c11bd4);
+}
 .hero-note{margin-top:12px;font-size:13px;color:#eee}
-.ad-slot{margin:18px auto;max-width:1100px;min-height:65px;border:1px dashed #c9c2d8;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#898398;font-size:12px;background:#ffffffa8}
+.ad-slot{
+ margin:20px auto;max-width:1100px;min-height:70px;
+ border:1px dashed #c9c2d8;border-radius:12px;
+ display:flex;align-items:center;justify-content:center;
+ color:#898398;font-size:12px;background:#ffffffa8;
+}
 .section{padding:20px 3%;max-width:1450px;margin:auto}
-.section-heading{display:flex;justify-content:space-between;align-items:center;margin:12px 0 18px}
+.section-heading{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;margin:12px 0 18px;
+}
 .section-heading h2{font-size:27px}
-.section-heading h2:before{content:"";display:inline-block;width:6px;height:27px;background:var(--pink);border-radius:5px;margin-right:12px;vertical-align:middle}
-.section-heading a{color:#6724a4;text-decoration:none}
-.categories{display:grid;grid-template-columns:repeat(8,minmax(80px,1fr));gap:12px}
-.category{border:1px solid #e4d9ee;border-radius:17px;padding:17px 7px;text-align:center;color:white;background:linear-gradient(145deg,#25203d,#111020);transition:.2s}
-.category:hover,.category.selected{transform:translateY(-4px);border-color:#ff2697}
+.section-heading h2:before{
+ content:"";display:inline-block;width:6px;height:27px;
+ background:var(--pink);border-radius:5px;
+ margin-right:12px;vertical-align:middle;
+}
+.text-link{color:#6724a4;text-decoration:none;font-weight:600}
+.categories{
+ display:grid;grid-template-columns:repeat(8,minmax(80px,1fr));gap:12px;
+}
+.category{
+ border:1px solid #e4d9ee;border-radius:17px;padding:17px 7px;
+ text-align:center;color:white;
+ background:linear-gradient(145deg,#25203d,#111020);
+ transition:.2s;
+}
+.category:hover,.category.selected{
+ transform:translateY(-4px);border-color:#ff2697;
+ box-shadow:0 7px 18px #e92d8b35;
+}
 .category .emoji{font-size:35px;display:block;margin-bottom:5px}
 .category strong{font-size:15px}
-.quick-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:22px 0}
-.quick-card{display:flex;align-items:center;gap:14px;background:white;border:1px solid #e9e2f0;padding:17px;border-radius:17px;box-shadow:0 4px 15px #2a174010}
-.quick-icon{width:53px;height:53px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;color:white;font-size:27px;background:linear-gradient(140deg,#ff1684,#8d32df)}
+.quick-actions{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:18px;margin:22px 0;
+}
+.quick-card{
+ display:flex;align-items:center;gap:14px;
+ background:white;border:1px solid #e9e2f0;
+ padding:17px;border-radius:17px;
+ box-shadow:0 4px 15px #2a174010;
+}
+.quick-icon{
+ width:53px;height:53px;flex-shrink:0;
+ border-radius:14px;display:grid;place-items:center;
+ color:white;font-size:27px;
+ background:linear-gradient(140deg,#ff1684,#8d32df);
+}
 .quick-card h3{font-size:17px}
 .quick-card p{font-size:13px;color:#777}
-.featured{background:linear-gradient(120deg,#161329,#282044);color:white;border-radius:20px;padding:25px;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:center}
+.featured{
+ background:linear-gradient(120deg,#161329,#282044);
+ color:white;border-radius:20px;padding:25px;
+ display:grid;grid-template-columns:140px 1fr;
+ gap:20px;align-items:center;
+}
 .rose{font-size:90px;text-align:center}
-.featured blockquote{font-size:clamp(21px,3vw,32px);line-height:1.65;font-weight:600;white-space:pre-line}
+.featured blockquote{
+ font-size:clamp(21px,3vw,32px);
+ line-height:1.65;font-weight:600;white-space:pre-line;
+}
 .author{color:#ff8bc1;margin-top:10px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
-.action-btn{border:1px solid #ffffff50;color:white;background:#ffffff12;border-radius:25px;padding:9px 17px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.action-btn{
+ border:1px solid #ffffff50;color:white;
+ background:#ffffff12;border-radius:25px;padding:9px 16px;
+}
 .action-btn:hover{background:var(--pink)}
-.shayari-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.shayari-card{padding:22px;border-radius:18px;color:white;background:linear-gradient(140deg,#272044,#111020);box-shadow:0 6px 20px #21143b1b}
+.favorite-btn.saved{background:#e91e75;border-color:#e91e75}
+.shayari-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:17px;
+}
+.shayari-card{
+ padding:22px;border-radius:18px;color:white;
+ background:linear-gradient(140deg,#272044,#111020);
+ box-shadow:0 6px 20px #21143b1b;
+}
 .small-category{color:#ff86bd;font-size:13px}
-.shayari-card p{white-space:pre-line;font-size:19px;line-height:1.8;margin:12px 0}
-.designer{border-radius:22px;padding:28px;color:white;background:linear-gradient(115deg,#242044,#8525a8);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.shayari-card p{
+ white-space:pre-line;font-size:19px;
+ line-height:1.8;margin:12px 0;
+}
+.card-footer{
+ display:flex;justify-content:space-between;align-items:center;
+ color:#c9c3dc;font-size:12px;margin-top:12px;
+}
+.designer{
+ border-radius:22px;padding:28px;color:white;
+ background:linear-gradient(115deg,#242044,#8525a8);
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
 .designer h2{font-size:28px}
 .designer p{color:#eee;margin:6px 0 15px}
-footer{background:#151327;color:#ddd;padding:35px 5%;margin-top:40px}
-.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer{
+ background:#151327;color:#ddd;padding:35px 5%;margin-top:40px;
+}
+.footer-inner{
+ max-width:1200px;margin:auto;
+ display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap;
+}
 footer h2{color:#ff65ad}
 footer p{color:#bcb5cc;margin-top:7px}
+footer a{color:#e9b4d3;text-decoration:none}
 .mobile-nav{display:none}
-.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#201936;color:white;padding:12px 22px;border-radius:30px;z-index:99;display:none}
-@media(max-width:950px){.categories{grid-template-columns:repeat(4,1fr)}.shayari-grid{grid-template-columns:repeat(2,1fr)}}
+.toast{
+ position:fixed;bottom:85px;left:50%;
+ transform:translateX(-50%);
+ background:#201936;color:white;padding:12px 22px;
+ border-radius:30px;z-index:99;display:none;
+ box-shadow:0 5px 20px #0004;max-width:90%;text-align:center;
+}
+.empty-state{
+ grid-column:1/-1;text-align:center;padding:35px;
+ color:#777;background:white;border-radius:15px;
+}
+.designer-modal{
+ display:none;position:fixed;inset:0;z-index:100;
+ background:#090714d9;align-items:center;justify-content:center;
+ padding:15px;
+}
+.designer-modal.open{display:flex}
+.modal-box{
+ width:min(520px,100%);max-height:90vh;overflow:auto;
+ background:white;border-radius:20px;padding:22px;
+}
+.modal-box h2{margin-bottom:14px}
+.modal-box textarea{
+ width:100%;min-height:110px;padding:12px;
+ border:1px solid #ddd;border-radius:10px;resize:vertical;
+}
+.modal-box label{display:block;margin:12px 0 5px;font-weight:600}
+.modal-box select,.modal-box input{
+ width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;
+}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.modal-close{background:#eee;color:#333;border:0;padding:10px 17px;border-radius:25px}
+@media(max-width:950px){
+ .categories{grid-template-columns:repeat(4,1fr)}
+ .shayari-grid{grid-template-columns:repeat(2,1fr)}
+ .nav button{padding:9px 8px;font-size:13px}
+}
 @media(max-width:650px){
-body{padding-bottom:70px}
-.topbar{min-height:65px;padding:8px 13px}
-.brand-icon{font-size:33px}.brand-name{font-size:19px}.tagline{font-size:10px}
-.nav{display:none}
-.hero{padding:38px 20px;min-height:280px}
-.hero h2{font-size:20px}.hero p{font-size:15px}
-.section{padding:14px}
-.section-heading h2{font-size:22px}
-.categories{grid-template-columns:repeat(4,1fr);gap:8px}
-.category{padding:12px 4px;border-radius:13px}
-.category .emoji{font-size:27px}.category strong{font-size:12px}
-.quick-actions{grid-template-columns:1fr;gap:10px}
-.quick-card{padding:12px}
-.featured{grid-template-columns:1fr;padding:20px;gap:5px}
-.rose{font-size:60px}
-.featured blockquote{text-align:center;font-size:21px}
-.featured .author{text-align:center}
-.featured .actions{justify-content:center}
-.shayari-grid{grid-template-columns:1fr}
-.designer{display:block;padding:22px}
-.designer h2{font-size:23px}
-.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:30;background:#17152b;color:white;justify-content:space-around;padding:9px 3px;box-shadow:0 -5px 20px #0002}
-.mobile-nav button{background:none;border:0;color:white;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px}
-.mobile-nav span{font-size:21px}
+ body{padding-bottom:72px}
+ .topbar{min-height:66px;padding:8px 13px}
+ .brand img{width:43px;height:43px}
+ .brand-name{font-size:18px}
+ .tagline{font-size:10px}
+ .nav{display:none}
+ .hero{padding:38px 20px;min-height:290px}
+ .hero-logo{width:58px;height:58px}
+ .hero h2{font-size:20px}
+ .hero p{font-size:15px}
+ .section{padding:14px}
+ .section-heading h2{font-size:22px}
+ .categories{grid-template-columns:repeat(4,1fr);gap:8px}
+ .category{padding:12px 4px;border-radius:13px}
+ .category .emoji{font-size:27px}
+ .category strong{font-size:12px}
+ .quick-actions{grid-template-columns:1fr;gap:10px}
+ .quick-card{padding:12px}
+ .featured{grid-template-columns:1fr;padding:20px;gap:5px}
+ .rose{font-size:60px}
+ .featured blockquote{text-align:center;font-size:21px}
+ .featured .author{text-align:center}
+ .featured .actions{justify-content:center}
+ .shayari-grid{grid-template-columns:1fr}
+ .designer{display:block;padding:22px}
+ .designer h2{font-size:23px}
+ .mobile-nav{
+  display:flex;position:fixed;bottom:0;left:0;right:0;
+  z-index:50;background:#171329;color:white;
+  justify-content:space-around;padding:9px 3px;
+  box-shadow:0 -5px 20px #0002;
+ }
+ .mobile-nav button{
+  background:none;border:0;color:white;font-size:11px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+ }
+ .mobile-nav span{font-size:21px}
 }
 </style>
 </head>
+
 <body>
 
 <header class="topbar">
- <div class="brand">
-  <div class="brand-icon">🪶</div>
+ <a class="brand" href="#home" style="color:white;text-decoration:none">
+  <img src="logo.png" alt="Ishwar Shayari Logo">
   <div>
    <div class="brand-name">Ishwar <span>Shayari</span></div>
    <div class="tagline">हर एहसास, अल्फ़ाज़ों में... ❤️</div>
   </div>
- </div>
+ </a>
  <nav class="nav">
   <button class="active" onclick="goHome()">⌂ होम</button>
   <button onclick="showAll()">शायरी</button>
   <button onclick="scrollToSection('categories')">♧ कैटेगरी</button>
   <button onclick="scrollToSection('designer')">♢ डिजाइनर</button>
+  <button onclick="showFavorites()">♡ पसंद</button>
  </nav>
- <button class="action-btn" onclick="scrollToSection('search')">⌕</button>
+ <button class="icon-button" onclick="focusSearch()" aria-label="शायरी खोजें">⌕</button>
 </header>
 
 <section class="hero" id="home">
  <div class="hero-content">
-  <h1>🪶 Ishwar <span>Shayari</span></h1>
+  <img src="logo.png" class="hero-logo" alt="Ishwar Shayari">
+  <h1>Ishwar <span>Shayari</span></h1>
   <h2>हर एहसास, अल्फ़ाज़ों में... ❤️</h2>
   <p>पढ़ें, महसूस करें और अपनी पसंदीदा शायरी दुनिया के साथ साझा करें।</p>
   <div class="searchbox" id="search">
-   <input id="searchInput" type="search" placeholder="शायरी खोजें... जैसे प्यार, दोस्ती, दर्द">
+   <input id="searchInput" type="search" placeholder="शायरी खोजें... जैसे प्यार, दोस्ती, दर्द" aria-label="शायरी खोजें">
    <button onclick="searchShayari()">खोजें</button>
   </div>
   <div class="hero-note">✨ हर दिन नई शायरी • सभी के लिए मुफ्त</div>
@@ -135,7 +320,10 @@ body{padding-bottom:70px}
 
 <main>
 <section class="section" id="categories">
- <div class="section-heading"><h2>शायरी कैटेगरी</h2><a href="#" onclick="showAll();return false">सभी देखें →</a></div>
+ <div class="section-heading">
+  <h2>शायरी कैटेगरी</h2>
+  <a class="text-link" href="#" onclick="showAll();return false">सभी देखें →</a>
+ </div>
  <div class="categories">
   <button class="category" onclick="filterCategory('प्यार',this)"><span class="emoji">❤️</span><strong>प्यार</strong></button>
   <button class="category" onclick="filterCategory('दर्द',this)"><span class="emoji">💔</span><strong>दर्द</strong></button>
@@ -150,8 +338,14 @@ body{padding-bottom:70px}
 
 <section class="section">
  <div class="quick-actions">
-  <div class="quick-card"><div class="quick-icon">📖</div><div><h3>हजारों शायरियाँ</h3><p>हर एहसास के लिए शायरी</p></div></div>
-  <div class="quick-card" onclick="scrollToSection('designer')"><div class="quick-icon">▧</div><div><h3>Shayari Designer</h3><p>फोटो + टेक्स्ट डिजाइन बनाएँ</p></div></div>
+  <div class="quick-card">
+   <div class="quick-icon">📖</div>
+   <div><h3>शायरी संग्रह</h3><p>हर एहसास के लिए खूबसूरत शायरी</p></div>
+  </div>
+  <div class="quick-card" onclick="openDesigner()">
+   <div class="quick-icon">▧</div>
+   <div><h3>Shayari Designer</h3><p>अपनी पसंद की इमेज बनाएँ</p></div>
+  </div>
  </div>
 </section>
 
@@ -160,7 +354,8 @@ body{padding-bottom:70px}
  <div class="featured">
   <div class="rose">🌹</div>
   <div>
-   <blockquote id="featuredText">कुछ रिश्ते शब्दों से नहीं,\nएहसासों से निभाए जाते हैं...</blockquote>
+   <blockquote id="featuredText">कुछ रिश्ते शब्दों से नहीं,
+एहसासों से निभाए जाते हैं...</blockquote>
    <div class="author">— Ishwar Shayari ❤️</div>
    <div class="actions">
     <button class="action-btn" onclick="copyText(featuredText.textContent)">▣ कॉपी</button>
@@ -172,9 +367,12 @@ body{padding-bottom:70px}
 </section>
 
 <section class="section" id="allShayari">
- <div class="section-heading"><h2 id="listTitle">नई शायरी</h2></div>
+ <div class="section-heading">
+  <h2 id="listTitle">नई शायरी</h2>
+  <button class="text-link" style="border:0;background:none" onclick="showAll()">सभी शायरी</button>
+ </div>
  <div class="shayari-grid" id="shayariGrid">
-  <p>शायरियाँ लोड हो रही हैं...</p>
+  <div class="empty-state">शायरियाँ लोड हो रही हैं...</div>
  </div>
 </section>
 
@@ -182,20 +380,33 @@ body{padding-bottom:70px}
  <div class="designer">
   <div>
    <h2>🎨 Shayari Designer</h2>
-   <p>अपनी पसंद की शायरी को खूबसूरत इमेज में बदलें और शेयर करें।</p>
+   <p>अपनी पसंद की शायरी को खूबसूरत HD इमेज में बदलें और शेयर करें।</p>
    <button class="primary" onclick="openDesigner()">डिजाइन शुरू करें →</button>
   </div>
   <div style="font-size:75px">🖼️</div>
  </div>
 </section>
+
 <div class="ad-slot">विज्ञापन स्थान</div>
 </main>
 
 <footer>
  <div class="footer-inner">
-  <div><h2>🪶 Ishwar Shayari</h2><p>हर एहसास, अल्फ़ाज़ों में... ❤️</p><p>सभी के लिए मुफ्त शायरी।</p></div>
-  <div><h3>जानकारी</h3><p>Privacy Policy</p><p>Contact Us</p><p>Disclaimer</p></div>
-  <div><h3>© 2026 Ishwar Shayari</h3><p>Made with ❤️ for Shayari Lovers</p></div>
+  <div>
+   <h2>🪶 Ishwar Shayari</h2>
+   <p>हर एहसास, अल्फ़ाज़ों में... ❤️</p>
+   <p>सभी के लिए मुफ्त शायरी।</p>
+  </div>
+  <div>
+   <h3>जानकारी</h3>
+   <p><a href="privacy.html">Privacy Policy</a></p>
+   <p><a href="contact.html">Contact Us</a></p>
+   <p><a href="disclaimer.html">Disclaimer</a></p>
+  </div>
+  <div>
+   <h3>© 2026 Ishwar Shayari</h3>
+   <p>Made with ❤️ for Shayari Lovers</p>
+  </div>
  </div>
 </footer>
 
@@ -203,144 +414,309 @@ body{padding-bottom:70px}
  <button onclick="goHome()"><span>⌂</span>होम</button>
  <button onclick="showAll()"><span>♡</span>शायरी</button>
  <button onclick="scrollToSection('categories')"><span>▦</span>कैटेगरी</button>
- <button onclick="scrollToSection('designer')"><span>✎</span>डिजाइनर</button>
+ <button onclick="openDesigner()"><span>✎</span>डिजाइनर</button>
+ <button onclick="showFavorites()"><span>☆</span>पसंद</button>
 </nav>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="designer-modal" id="designerModal" role="dialog" aria-modal="true" aria-labelledby="designerTitle">
+ <div class="modal-box">
+  <h2 id="designerTitle">🎨 Shayari Designer</h2>
+  <label for="designText">अपनी शायरी लिखें</label>
+  <textarea id="designText" maxlength="500" placeholder="यहाँ अपनी शायरी लिखें..."></textarea>
+  <label for="designTheme">डिजाइन थीम</label>
+  <select id="designTheme">
+   <option value="purple">Royal Purple</option>
+   <option value="pink">Romantic Pink</option>
+   <option value="night">Midnight Blue</option>
+   <option value="sunset">Sunset</option>
+  </select>
+  <div class="modal-actions">
+   <button class="primary" onclick="makeDesign()">HD इमेज डाउनलोड करें</button>
+   <button class="modal-close" onclick="closeDesigner()">बंद करें</button>
+  </div>
+ </div>
+</div>
 
 <script>
+"use strict";
+
 let shayariData=[];
+let currentItems=[];
+let currentMode="all";
+
 const grid=document.getElementById("shayariGrid");
-const featuredText=document.getElementById("featuredText");
+const title=document.getElementById("listTitle");
+const toastBox=document.getElementById("toast");
+
+function toast(message){
+ toastBox.textContent=message;
+ toastBox.style.display="block";
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>toastBox.style.display="none",2500);
+}
+
+function scrollToSection(id){
+ const el=document.getElementById(id);
+ if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function goHome(){scrollToSection("home")}
+function focusSearch(){
+ scrollToSection("search");
+ document.getElementById("searchInput").focus();
+}
 
 async function loadShayari(){
  try{
   const response=await fetch("shayari.json");
-  if(!response.ok)throw new Error("JSON file not found");
+  if(!response.ok)throw new Error("HTTP "+response.status);
   const data=await response.json();
-  shayariData=data.shayari||[];
-  renderShayari(shayariData);
+  if(!Array.isArray(data.shayari))throw new Error("Invalid shayari data");
+  shayariData=data.shayari.filter(item=>
+   item && typeof item.text==="string" && typeof item.category==="string"
+  );
+  currentItems=shayariData;
+  renderShayari(currentItems);
+  if(shayariData.length){
+   const featured=shayariData[0];
+   document.getElementById("featuredText").textContent=featured.text;
+  }
  }catch(error){
-  grid.innerHTML="<p>शायरी लोड नहीं हो सकी। कृपया shayari.json फाइल जाँचें।</p>";
+  grid.innerHTML='<div class="empty-state">शायरियाँ लोड नहीं हो सकीं। shayari.json फाइल की जाँच करें और पेज रिफ्रेश करें।</div>';
+  console.error("Shayari loading error:",error);
  }
+}
+
+function getFavorites(){
+ try{return JSON.parse(localStorage.getItem("ishwarFavorites")||"[]")}
+ catch(error){return []}
+}
+function isFavorite(id){return getFavorites().includes(String(id))}
+function toggleFavorite(id){
+ let favorites=getFavorites();
+ id=String(id);
+ if(favorites.includes(id)){
+  favorites=favorites.filter(x=>x!==id);
+  toast("पसंदीदा सूची से हटाया गया");
+ }else{
+  favorites.push(id);
+  toast("पसंदीदा शायरी में सेव हो गई ❤️");
+ }
+ try{localStorage.setItem("ishwarFavorites",JSON.stringify(favorites))}
+ catch(error){toast("ब्राउज़र में सेव नहीं हो पाया");}
+ if(currentMode==="favorites")showFavorites(false);
+ else renderShayari(currentItems);
 }
 
 function renderShayari(items){
  grid.innerHTML="";
- if(!items.length){grid.innerHTML="<p>इस कैटेगरी में अभी शायरी उपलब्ध नहीं है।</p>";return;}
- items.forEach(item=>{
+ if(!items.length){
+  grid.innerHTML='<div class="empty-state">अभी यहाँ कोई शायरी उपलब्ध नहीं है।</div>';
+  return;
+ }
+ items.forEach((item,index)=>{
   const card=document.createElement("article");
   card.className="shayari-card";
-  const cat=document.createElement("div");
-  cat.className="small-category";
-  cat.textContent=item.category+" शायरी";
-  const p=document.createElement("p");
-  p.textContent=item.text;
+
+  const category=document.createElement("div");
+  category.className="small-category";
+  category.textContent=item.category+" शायरी";
+
+  const text=document.createElement("p");
+  text.textContent=item.text;
+
   const actions=document.createElement("div");
   actions.className="actions";
+
   const copy=document.createElement("button");
-  copy.className="action-btn";copy.textContent="▣ कॉपी";
+  copy.className="action-btn";
+  copy.textContent="▣ कॉपी";
   copy.onclick=()=>copyText(item.text);
+
   const share=document.createElement("button");
-  share.className="action-btn";share.textContent="↗ शेयर";
+  share.className="action-btn";
+  share.textContent="↗ शेयर";
   share.onclick=()=>shareText(item.text);
+
   const download=document.createElement("button");
-  download.className="action-btn";download.textContent="↓ डाउनलोड";
+  download.className="action-btn";
+  download.textContent="↓ डाउनलोड";
   download.onclick=()=>downloadQuote(item.text);
-  actions.append(copy,share,download);
-  card.append(cat,p,actions);
+
+  const favorite=document.createElement("button");
+  favorite.className="action-btn favorite-btn"+(isFavorite(item.id)?" saved":"");
+  favorite.textContent=isFavorite(item.id)?"♥ पसंद":"♡ पसंद";
+  favorite.onclick=()=>toggleFavorite(item.id);
+
+  actions.append(copy,share,download,favorite);
+  card.append(category,text,actions);
   grid.appendChild(card);
  });
 }
 
-function filterCategory(cat,button){
- document.querySelectorAll(".category").forEach(x=>x.classList.remove("selected"));
+function filterCategory(category,button){
+ currentMode="category";
+ document.querySelectorAll(".category").forEach(el=>el.classList.remove("selected"));
  if(button)button.classList.add("selected");
- document.getElementById("listTitle").textContent=cat+" शायरी";
- renderShayari(shayariData.filter(x=>x.category===cat));
+ title.textContent=category+" शायरी";
+ currentItems=shayariData.filter(item=>item.category===category);
+ renderShayari(currentItems);
  scrollToSection("allShayari");
 }
 
 function showAll(){
- document.querySelectorAll(".category").forEach(x=>x.classList.remove("selected"));
- document.getElementById("listTitle").textContent="सभी शायरियाँ";
- renderShayari(shayariData);
+ currentMode="all";
+ document.querySelectorAll(".category").forEach(el=>el.classList.remove("selected"));
+ title.textContent="सभी शायरियाँ";
+ currentItems=shayariData;
+ renderShayari(currentItems);
  scrollToSection("allShayari");
 }
 
 function searchShayari(){
- const q=document.getElementById("searchInput").value.trim().toLowerCase();
- const result=shayariData.filter(x=>(x.text+" "+x.category).toLowerCase().includes(q));
- document.getElementById("listTitle").textContent="खोज के परिणाम";
- renderShayari(result);
+ const query=document.getElementById("searchInput").value.trim().toLocaleLowerCase("hi");
+ currentMode="search";
+ document.querySelectorAll(".category").forEach(el=>el.classList.remove("selected"));
+ title.textContent=query?"खोज के परिणाम":"सभी शायरियाँ";
+ currentItems=query?shayariData.filter(item=>
+  (item.text+" "+item.category).toLocaleLowerCase("hi").includes(query)
+ ):shayariData;
+ renderShayari(currentItems);
  scrollToSection("allShayari");
 }
 
-function scrollToSection(id){
- document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-function goHome(){scrollToSection("home");}
-
-function showToast(message){
- const t=document.getElementById("toast");
- t.textContent=message;t.style.display="block";
- setTimeout(()=>t.style.display="none",2400);
+function showFavorites(shouldScroll=true){
+ currentMode="favorites";
+ document.querySelectorAll(".category").forEach(el=>el.classList.remove("selected"));
+ const favorites=getFavorites();
+ currentItems=shayariData.filter(item=>favorites.includes(String(item.id)));
+ title.textContent="आपकी पसंदीदा शायरी";
+ renderShayari(currentItems);
+ if(shouldScroll)scrollToSection("allShayari");
 }
 
 async function copyText(text){
  try{
-  await navigator.clipboard.writeText(text);
-  showToast("शायरी कॉपी हो गई ❤️");
- }catch(e){showToast("कॉपी सुविधा उपलब्ध नहीं है");}
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(text);
+  }else{
+   const area=document.createElement("textarea");
+   area.value=text;
+   document.body.appendChild(area);
+   area.select();
+   document.execCommand("copy");
+   area.remove();
+  }
+  toast("शायरी कॉपी हो गई ❤️");
+ }catch(error){toast("कॉपी नहीं हो पाई");}
 }
 
 async function shareText(text){
- const data={title:"Ishwar Shayari",text:text+"\n\n— Ishwar Shayari"};
+ const shareData={
+  title:"Ishwar Shayari",
+  text:text+"\n\n— Ishwar Shayari",
+  url:location.href
+ };
  if(navigator.share){
-  try{await navigator.share(data);}catch(e){}
+  try{await navigator.share(shareData)}
+  catch(error){if(error.name!=="AbortError")toast("शेयर नहीं हो पाया")}
  }else{
-  await copyText(data.text);
-  showToast("शायरी कॉपी हुई, अब शेयर करें");
+  await copyText(shareData.text+" "+shareData.url);
+  toast("लिंक और शायरी कॉपी हो गई");
  }
 }
 
-function downloadQuote(text){
+function downloadQuote(text,theme="purple"){
  const canvas=document.createElement("canvas");
- canvas.width=1080;canvas.height=1080;
+ canvas.width=1080;
+ canvas.height=1080;
  const ctx=canvas.getContext("2d");
+ const themes={
+  purple:["#171329","#702c91","#ff79c1"],
+  pink:["#4b102d","#d72c82","#ffd0e7"],
+  night:["#071d3b","#154c75","#9bdcff"],
+  sunset:["#5d214c","#ed704e","#ffd69b"]
+ };
+ const colors=themes[theme]||themes.purple;
  const gradient=ctx.createLinearGradient(0,0,1080,1080);
- gradient.addColorStop(0,"#17152b");
- gradient.addColorStop(1,"#7d258e");
+ gradient.addColorStop(0,colors[0]);
+ gradient.addColorStop(1,colors[1]);
  ctx.fillStyle=gradient;
  ctx.fillRect(0,0,1080,1080);
- ctx.strokeStyle="#ff65ad";ctx.lineWidth=7;
+
+ ctx.strokeStyle=colors[2];
+ ctx.lineWidth=7;
  ctx.strokeRect(35,35,1010,1010);
+ ctx.strokeRect(55,55,970,970);
+
  ctx.textAlign="center";
- ctx.fillStyle="#ff75b8";
- ctx.font="bold 65px sans-serif";
- ctx.fillText("Ishwar Shayari",540,200);
+ ctx.fillStyle=colors[2];
+ ctx.font="bold 58px sans-serif";
+ ctx.fillText("Ishwar Shayari",540,175);
+
  ctx.fillStyle="#ffffff";
- ctx.font="bold 45px sans-serif";
+ ctx.font="bold 43px sans-serif";
+
  const lines=text.split("\n");
- lines.slice(0,8).forEach((line,i)=>ctx.fillText(line,540,400+i*85,900));
- ctx.fillStyle="#ff83bd";
- ctx.font="36px sans-serif";
+ const maxWidth=850;
+ const wrapped=[];
+
+ lines.forEach(line=>{
+  let current="";
+  for(const char of line){
+   const test=current+char;
+   if(ctx.measureText(test).width>maxWidth && current){
+    wrapped.push(current);
+    current=char;
+   }else current=test;
+  }
+  wrapped.push(current);
+ });
+
+ const visible=wrapped.slice(0,10);
+ const lineHeight=68;
+ const startY=540-((visible.length-1)*lineHeight)/2;
+ visible.forEach((line,index)=>{
+  ctx.fillText(line,540,startY+index*lineHeight);
+ });
+
+ ctx.fillStyle=colors[2];
+ ctx.font="34px sans-serif";
  ctx.fillText("हर एहसास, अल्फ़ाज़ों में... ❤️",540,900);
- const a=document.createElement("a");
- a.download="ishwar-shayari.png";
- a.href=canvas.toDataURL("image/png");
- a.click();
- showToast("शायरी इमेज डाउनलोड हो गई");
+
+ ctx.fillStyle="#ffffffbb";
+ ctx.font="22px sans-serif";
+ ctx.fillText("www.ishwar-shayari.onrender.com",540,970);
+
+ const link=document.createElement("a");
+ link.download="ishwar-shayari.png";
+ link.href=canvas.toDataURL("image/png");
+ link.click();
+ toast("HD शायरी इमेज डाउनलोड हो गई");
 }
 
 function openDesigner(){
- const text=prompt("अपनी शायरी लिखें:");
- if(text)downloadQuote(text);
+ document.getElementById("designerModal").classList.add("open");
+}
+function closeDesigner(){
+ document.getElementById("designerModal").classList.remove("open");
+}
+function makeDesign(){
+ const text=document.getElementById("designText").value.trim();
+ const theme=document.getElementById("designTheme").value;
+ if(!text){toast("पहले अपनी शायरी लिखें");return}
+ downloadQuote(text,theme);
+ closeDesigner();
 }
 
-document.getElementById("searchInput").addEventListener("keydown",e=>{
- if(e.key==="Enter")searchShayari();
+document.getElementById("searchInput").addEventListener("keydown",event=>{
+ if(event.key==="Enter")searchShayari();
 });
+document.getElementById("designerModal").addEventListener("click",event=>{
+ if(event.target.id==="designerModal")closeDesigner();
+});
+
 loadShayari();
 </script>
 </body>
