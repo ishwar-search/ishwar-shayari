@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff8ee">
+    <title>संपर्क करें | Ishwar Shayari</title>
+    <meta name="description" content="Ishwar Shayari से संपर्क करें। अपने सुझाव, सवाल और प्रतिक्रिया हमें भेजें।">
+
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Hind',sans-serif;
+            background:#fff8ee;
+            color:#282019;
+            line-height:1.8;
+        }
+        header {
+            padding:18px 5%;
+            background:#fffaf2;
+            border-bottom:1px solid #eadbc7;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:12px;
+        }
+        .logo {
+            font-size:25px;
+            font-weight:700;
+            color:#282019;
+            text-decoration:none;
+        }
+        .logo span { color:#e87508; }
+        .back { color:#bd5100; text-decoration:none; font-weight:600; }
+        .container { width:min(750px,92%); margin:45px auto; }
+        .content {
+            background:#fffaf2;
+            padding:35px;
+            border:1px solid #eadbc7;
+            border-radius:20px;
+            box-shadow:0 8px 22px rgba(91,55,20,.08);
+        }
+        h1 { color:#bd5100; font-size:34px; margin-bottom:10px; }
+        p { margin-bottom:15px; }
+        label { display:block; font-weight:600; margin:14px 0 5px; }
+        input, textarea {
+            width:100%;
+            padding:12px;
+            border:1px solid #d9c3a9;
+            border-radius:10px;
+            background:white;
+            font:inherit;
+        }
+        textarea { min-height:130px; resize:vertical; }
+        button {
+            margin-top:18px;
+            padding:12px 25px;
+            background:#e87508;
+            color:white;
+            border:0;
+            border-radius:30px;
+            font:inherit;
+            font-weight:700;
+            cursor:pointer;
+        }
+        button:hover { background:#bd5100; }
+        .note {
+            background:#f5e5ce;
+            padding:14px;
+            border-radius:10px;
+            margin-top:20px;
+        }
+        footer {
+            text-align:center;
+            padding:22px;
+            background:#28231e;
+            color:#e8ded2;
+            margin-top:40px;
+        }
+        footer a { color:#ffad55; text-decoration:none; }
+        @media(max-width:600px) {
+            .content { padding:22px; }
+            h1 { font-size:28px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="./index.html" class="logo">Ishwar <span>Shayari</span></a>
+    <a href="./index.html" class="back">← होम पेज</a>
+</header>
+
+<main class="container">
+    <section class="content">
+
+        <h1>संपर्क करें</h1>
+
+        <p>
+            Ishwar Shayari पर आपका स्वागत है।
+            यदि आपके पास कोई सवाल, सुझाव या प्रतिक्रिया है,
+            तो आप नीचे दिए गए फॉर्म के माध्यम से हमें संदेश भेज सकते हैं।
+        </p>
+
+        <form id="contactForm">
+
+            <label for="name">आपका नाम</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="अपना नाम लिखें"
+                required
+            >
+
+            <label for="email">ईमेल पता</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="अपना ईमेल लिखें"
+                required
+            >
+
+            <label for="subject">विषय</label>
+            <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="संदेश का विषय"
+                required
+            >
+
+            <label for="message">आपका संदेश</label>
+            <textarea
+                id="message"
+                name="message"
+                placeholder="अपना संदेश लिखें..."
+                required
+            ></textarea>
+
+            <button type="submit">ईमेल से संदेश भेजें</button>
+
+        </form>
+
+        <div class="note">
+            <strong>महत्वपूर्ण सूचना:</strong>
+            यह फॉर्म आपके डिवाइस के ईमेल ऐप में संदेश तैयार करेगा।
+            संदेश भेजने के लिए ईमेल ऐप में Send दबाना होगा।
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    © 2026 Ishwar Shayari | सभी अधिकार सुरक्षित हैं।
+    <br>
+    <a href="./about.html">About Us</a> |
+    <a href="./privacy.html">Privacy Policy</a> |
+    <a href="./disclaimer.html">Disclaimer</a>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !subject || !message) {
+        alert("कृपया सभी जानकारी भरें।");
+        return;
+    }
+
+    const recipient = "YOUR_EMAIL@example.com";
+    const body =
+        "नाम: " + name + "\n" +
+        "ईमेल: " + email + "\n\n" +
+        "संदेश:\n" + message;
+
+    const mailto =
+        "mailto:" + recipient +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
+});
+</script>
+
+</body>
+</html>
