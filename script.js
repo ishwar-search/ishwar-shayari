@@ -1,126 +1,155 @@
 
-/* ==========================================
+"use strict";
+
+/* =========================================
    ISHWAR SHAYARI
-   Main JavaScript File
-   Version: 2.0
-========================================== */
+   Main JavaScript
+   Version 3.0
+========================================= */
+
+const $ = id => document.getElementById(id);
 
 let shayariData = [];
-let currentShayari = [];
-let visibleCount = 30;
+let currentItems = [];
+let visibleCount = 12;
+let currentMode = "all";
 
-const grid = document.getElementById("shayariGrid");
-const featuredText = document.getElementById("featuredText");
-
-/* CATEGORY WISE PHOTOS */
+/* CATEGORY IMAGES */
 
 const categoryImages = {
-    "प्यार": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900",
-    "दर्द": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=900",
-    "दोस्ती": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900",
-    "एटीट्यूड": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900",
-    "मोटिवेशन": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",
-    "भक्ति": "https://images.unsplash.com/photo-1604608672516-3a9b8f7a4c4c?w=900",
-    "देशभक्ति": "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900",
-    "रात": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900"
+    "प्यार": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1000",
+    "दर्द": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1000",
+    "दोस्ती": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000",
+    "एटीट्यूड": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000",
+    "मोटिवेशन": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1000",
+    "भक्ति": "https://images.unsplash.com/photo-1604608672516-3a9b8f7a4c4c?w=1000",
+    "देशभक्ति": "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=1000",
+    "रात": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1000",
+    "प्रकृति": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1000",
+    "परिवार": "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1000",
+    "जिंदगी": "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1000"
 };
 
 const defaultImage =
-    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900";
+"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1000";
 
-/* ADD EXTRA CSS */
+/* TOAST MESSAGE */
 
-const extraCSS = document.createElement("style");
+function toast(message) {
+    const box = $("toast");
 
-extraCSS.textContent = `
-.shayari-card {
-    overflow: hidden;
-    padding: 0 !important;
-    border-radius: 20px;
-    background: #17152b;
-    box-shadow: 0 8px 25px #17152b25;
-    transition: transform .3s ease;
+    if (!box) return;
+
+    box.textContent = message;
+    box.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+        box.style.display = "none";
+    }, 2500);
 }
 
-.shayari-card:hover {
-    transform: translateY(-5px);
-}
+/* NAVIGATION */
 
-.shayari-photo {
-    height: 190px;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-}
+function scrollToId(id) {
+    const section = $(id);
 
-.shayari-photo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(transparent, #17152b);
-}
-
-.shayari-content {
-    padding: 20px;
-    color: white;
-}
-
-.shayari-card p {
-    white-space: pre-line;
-    font-size: 19px;
-    line-height: 1.9;
-    margin: 12px 0;
-}
-
-.shayari-card .actions {
-    margin-top: 15px;
-}
-
-.shayari-card .action-btn {
-    font-size: 13px;
-}
-
-.load-more-wrap {
-    text-align: center;
-    margin: 25px 0;
-}
-
-.load-more-btn {
-    background: linear-gradient(110deg,#ff1684,#8d32df);
-    color: white;
-    border: 0;
-    border-radius: 30px;
-    padding: 13px 30px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.no-result {
-    text-align: center;
-    padding: 30px;
-    color: #777;
-    grid-column: 1 / -1;
-}
-
-@media(max-width:700px) {
-    .shayari-grid {
-        grid-template-columns: repeat(1,1fr) !important;
-    }
-    .shayari-photo {
-        height: 210px;
+    if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
     }
 }
-`;
 
-document.head.appendChild(extraCSS);
+function goHome() {
+    scrollToId("home");
+}
+
+function toggleMenu() {
+    scrollToId("categories");
+}
+
+/* DARK MODE */
+
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    try {
+        localStorage.setItem(
+            "ishwarTheme",
+            document.body.classList.contains("dark")
+                ? "dark"
+                : "light"
+        );
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+try {
+    if (localStorage.getItem("ishwarTheme") === "dark") {
+        document.body.classList.add("dark");
+    }
+} catch (error) {
+    console.log(error);
+}
+
+/* FAVORITES */
+
+function getFavorites() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("ishwarFavorites") || "[]"
+        );
+    } catch (error) {
+        return [];
+    }
+}
+
+function isFavorite(id) {
+    return getFavorites().includes(String(id));
+}
+
+function toggleFavorite(id) {
+    let favorites = getFavorites();
+
+    id = String(id);
+
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(item => item !== id);
+        toast("पसंदीदा सूची से हटाई गई");
+    } else {
+        favorites.push(id);
+        toast("पसंदीदा शायरी सेव हो गई ❤️");
+    }
+
+    try {
+        localStorage.setItem(
+            "ishwarFavorites",
+            JSON.stringify(favorites)
+        );
+    } catch (error) {
+        toast("ब्राउज़र में सेव नहीं हो पाया");
+    }
+
+    if (currentMode === "favorites") {
+        showFavorites();
+    } else {
+        renderShayari(currentItems);
+    }
+}
 
 /* LOAD SHAYARI JSON */
 
 async function loadShayari() {
-    try {
-        grid.innerHTML = "<p>शायरियाँ लोड हो रही हैं...</p>";
+    const grid = $("shayariGrid");
 
-        const response = await fetch("shayari.json");
+    try {
+        grid.innerHTML =
+            '<div class="empty">शायरियाँ लोड हो रही हैं...</div>';
+
+        const response = await fetch("./shayari.json", {
+            cache: "no-cache"
+        });
 
         if (!response.ok) {
             throw new Error("shayari.json नहीं मिली");
@@ -128,287 +157,288 @@ async function loadShayari() {
 
         const data = await response.json();
 
-        if (!data.shayari || !Array.isArray(data.shayari)) {
-            throw new Error("JSON का फॉर्मेट सही नहीं है");
+        const list = Array.isArray(data)
+            ? data
+            : data.shayari;
+
+        if (!Array.isArray(list)) {
+            throw new Error("JSON फॉर्मेट सही नहीं है");
         }
 
-        shayariData = data.shayari;
-        currentShayari = shayariData;
+        shayariData = list.map((item, index) => ({
+            id: String(item.id ?? index + 1),
+            category: String(
+                item.category ?? item.type ?? "अन्य"
+            ),
+            text: String(
+                item.text ?? item.content ?? item.shayari ?? ""
+            ),
+            image: String(item.image ?? "")
+        })).filter(item => item.text.trim());
 
-        renderShayari(currentShayari);
+        currentItems = shayariData;
+        visibleCount = 12;
 
-        if (shayariData.length > 0 && featuredText) {
-            featuredText.textContent = shayariData[0].text;
-        }
+        renderShayari(currentItems);
 
-        console.log("Ishwar Shayari Loaded:", shayariData.length);
+        console.log(
+            "Ishwar Shayari Loaded:",
+            shayariData.length
+        );
 
     } catch (error) {
-        console.error(error);
+        console.error("Shayari Error:", error);
 
         grid.innerHTML = `
-            <div class="no-result">
-                <h3>शायरियाँ लोड नहीं हो सकीं!</h3>
-                <p>कृपया shayari.json फाइल और उसका JSON फॉर्मेट जाँचें।</p>
+            <div class="empty">
+                <h3>शायरियाँ लोड नहीं हो सकीं।</h3>
+                <p>shayari.json फाइल और उसका JSON फॉर्मेट जाँचें।</p>
             </div>
         `;
     }
 }
 
-/* GET PHOTO */
+/* GET SHAYARI IMAGE */
 
-function getCategoryImage(category) {
-    return categoryImages[category] || defaultImage;
+function getImage(item) {
+    return item.image || categoryImages[item.category] || defaultImage;
 }
 
-/* RENDER SHAYARI CARDS */
+/* CREATE SHAYARI CARD */
 
-function renderShayari(items, reset = true) {
+function createCard(item) {
+    const card = document.createElement("article");
+    card.className = "shayari-card";
 
-    if (!grid) return;
+    /* PHOTO */
 
-    currentShayari = items;
+    const photo = document.createElement("div");
+    photo.className = "shayari-photo";
 
-    if (reset) {
-        visibleCount = 30;
-        grid.innerHTML = "";
-    }
+    photo.style.backgroundImage =
+        `url("${getImage(item)}")`;
+
+    /* QUOTE CONTENT */
+
+    const content = document.createElement("div");
+    content.className = "quote-content";
+
+    const quote = document.createElement("div");
+    quote.className = "quote-mark";
+    quote.textContent = "“";
+
+    const text = document.createElement("p");
+    text.className = "shayari-text";
+    text.textContent = item.text;
+
+    const category = document.createElement("span");
+    category.className = "shayari-category";
+    category.textContent = item.category;
+
+    content.append(quote, text, category);
+    photo.append(content);
+
+    /* ACTIONS */
+
+    const actions = document.createElement("div");
+    actions.className = "card-actions";
+
+    const like = document.createElement("button");
+    like.className = isFavorite(item.id) ? "saved" : "";
+    like.textContent = isFavorite(item.id) ? "♥" : "♡";
+    like.title = "पसंद करें";
+
+    like.onclick = () => toggleFavorite(item.id);
+
+    const count = document.createElement("span");
+    count.className = "like-count";
+    count.textContent = "128";
+
+    const copy = document.createElement("button");
+    copy.textContent = "▣";
+    copy.title = "कॉपी करें";
+    copy.onclick = () => copyText(item.text);
+
+    const share = document.createElement("button");
+    share.textContent = "↗";
+    share.title = "शेयर करें";
+    share.onclick = () => shareText(item.text);
+
+    const download = document.createElement("button");
+    download.textContent = "↓";
+    download.title = "इमेज डाउनलोड";
+    download.onclick = () => downloadImage(item);
+
+    actions.append(
+        like,
+        count,
+        copy,
+        share,
+        download
+    );
+
+    card.append(photo, actions);
+
+    return card;
+}
+
+/* DISPLAY SHAYARI */
+
+function renderShayari(items) {
+    const grid = $("shayariGrid");
+
+    grid.innerHTML = "";
 
     if (!items.length) {
         grid.innerHTML = `
-            <div class="no-result">
-                <h3>कोई शायरी नहीं मिली 😔</h3>
-                <p>दूसरी कैटेगरी या शब्द से खोजें।</p>
+            <div class="empty">
+                <h3>कोई शायरी नहीं मिली।</h3>
+                <p>दूसरे शब्द से खोजने की कोशिश करें।</p>
             </div>
         `;
+
+        $("loadMoreWrap").style.display = "none";
         return;
     }
 
-    const start = reset ? 0 : grid.children.length;
-    const end = Math.min(start + 30, items.length);
+    const visibleItems = items.slice(0, visibleCount);
 
-    for (let i = start; i < end; i++) {
+    visibleItems.forEach(item => {
+        grid.appendChild(createCard(item));
+    });
 
-        const item = items[i];
-
-        const card = document.createElement("article");
-        card.className = "shayari-card";
-
-        const photo = document.createElement("div");
-        photo.className = "shayari-photo";
-
-        const image = getCategoryImage(item.category);
-        photo.style.backgroundImage = `url("${image}")`;
-
-        const content = document.createElement("div");
-        content.className = "shayari-content";
-
-        const category = document.createElement("div");
-        category.className = "small-category";
-        category.textContent = (item.category || "शायरी") + " शायरी";
-
-        const p = document.createElement("p");
-        p.textContent = item.text || "";
-
-        const actions = document.createElement("div");
-        actions.className = "actions";
-
-        const copy = createButton("▣ कॉपी");
-        copy.onclick = () => copyText(item.text);
-
-        const share = createButton("↗ शेयर");
-        share.onclick = () => shareText(item.text);
-
-        const download = createButton("↓ इमेज डाउनलोड");
-        download.onclick = () => downloadQuote(
-            item.text,
-            item.category
-        );
-
-        actions.append(copy, share, download);
-
-        content.append(category, p, actions);
-        card.append(photo, content);
-
-        grid.appendChild(card);
-    }
-
-    updateLoadMoreButton();
+    $("loadMoreWrap").style.display =
+        visibleCount < items.length ? "block" : "none";
 }
 
-/* BUTTON CREATOR */
+/* LOAD MORE */
 
-function createButton(label) {
-    const button = document.createElement("button");
-    button.className = "action-btn";
-    button.textContent = label;
-    return button;
+function loadMore() {
+    visibleCount += 12;
+    renderShayari(currentItems);
 }
 
-/* LOAD MORE BUTTON */
+/* SHOW ALL */
 
-function updateLoadMoreButton() {
+function showAll() {
+    currentMode = "all";
 
-    let oldButton = document.getElementById("loadMoreWrap");
+    document.querySelectorAll(".category").forEach(button => {
+        button.classList.remove("active");
+    });
 
-    if (oldButton) oldButton.remove();
+    $("listTitle").textContent = "ताज़ा शायरियाँ";
 
-    if (grid.children.length >= currentShayari.length) return;
+    currentItems = shayariData;
+    visibleCount = 12;
 
-    const wrap = document.createElement("div");
-    wrap.className = "load-more-wrap";
-    wrap.id = "loadMoreWrap";
-
-    const button = document.createElement("button");
-    button.className = "load-more-btn";
-    button.textContent = "और शायरियाँ देखें ↓";
-
-    button.onclick = () => {
-        const oldLength = grid.children.length;
-        renderShayari(currentShayari, false);
-
-        if (grid.children.length > oldLength) {
-            wrap.remove();
-        }
-    };
-
-    wrap.appendChild(button);
-    grid.parentElement.appendChild(wrap);
+    renderShayari(currentItems);
+    scrollToId("allShayari");
 }
 
 /* CATEGORY FILTER */
 
 function filterCategory(category, button) {
+    currentMode = "category";
 
     document.querySelectorAll(".category").forEach(item => {
-        item.classList.remove("selected");
+        item.classList.remove("active");
     });
 
-    if (button) button.classList.add("selected");
+    button.classList.add("active");
 
-    document.getElementById("listTitle").textContent =
-        category + " शायरी";
+    $("listTitle").textContent =
+        category + " शायरियाँ";
 
-    const result = shayariData.filter(item =>
+    currentItems = shayariData.filter(item =>
         item.category === category
     );
 
-    renderShayari(result);
+    visibleCount = 12;
 
-    scrollToSection("allShayari");
+    renderShayari(currentItems);
+    scrollToId("allShayari");
 }
 
-/* SHOW ALL SHAYARI */
-
-function showAll() {
-
-    document.querySelectorAll(".category").forEach(item => {
-        item.classList.remove("selected");
-    });
-
-    document.getElementById("listTitle").textContent =
-        "सभी शायरियाँ";
-
-    renderShayari(shayariData);
-
-    scrollToSection("allShayari");
-}
-
-/* SEARCH SHAYARI */
+/* SEARCH */
 
 function searchShayari() {
+    const query = $("searchInput")
+        .value
+        .trim()
+        .toLocaleLowerCase("hi");
 
-    const input = document.getElementById("searchInput");
+    currentMode = "search";
 
-    if (!input) return;
-
-    const query = input.value.trim().toLowerCase();
-
-    if (!query) {
-        showAll();
-        return;
-    }
-
-    const result = shayariData.filter(item => {
-        const text = (item.text || "").toLowerCase();
-        const category = (item.category || "").toLowerCase();
-
-        return text.includes(query) || category.includes(query);
+    document.querySelectorAll(".category").forEach(item => {
+        item.classList.remove("active");
     });
 
-    document.getElementById("listTitle").textContent =
-        "खोज के परिणाम";
+    $("listTitle").textContent = "शायरी खोज परिणाम";
 
-    renderShayari(result);
+    currentItems = query
+        ? shayariData.filter(item =>
+            (item.text + " " + item.category)
+                .toLocaleLowerCase("hi")
+                .includes(query)
+        )
+        : shayariData;
 
-    scrollToSection("allShayari");
+    visibleCount = 12;
+
+    renderShayari(currentItems);
+    scrollToId("allShayari");
 }
 
-/* SCROLL */
+/* FAVORITES PAGE */
 
-function scrollToSection(id) {
+function showFavorites() {
+    currentMode = "favorites";
 
-    const section = document.getElementById(id);
+    const favorites = getFavorites();
 
-    if (section) {
-        section.scrollIntoView({
-            behavior: "smooth"
-        });
-    }
-}
+    currentItems = shayariData.filter(item =>
+        favorites.includes(String(item.id))
+    );
 
-function goHome() {
-    scrollToSection("home");
-}
+    $("listTitle").textContent =
+        "मेरी पसंदीदा शायरियाँ";
 
-/* TOAST MESSAGE */
+    visibleCount = 12;
 
-function showToast(message) {
-
-    const toast = document.getElementById("toast");
-
-    if (!toast) return;
-
-    toast.textContent = message;
-    toast.style.display = "block";
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer = setTimeout(() => {
-        toast.style.display = "none";
-    }, 2400);
+    renderShayari(currentItems);
+    scrollToId("allShayari");
 }
 
 /* COPY SHAYARI */
 
 async function copyText(text) {
-
     try {
         await navigator.clipboard.writeText(text);
-        showToast("शायरी कॉपी हो गई ❤️");
+        toast("शायरी कॉपी हो गई ❤️");
 
     } catch (error) {
+        const area = document.createElement("textarea");
 
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
+        area.value = text;
+        document.body.appendChild(area);
 
-        document.body.appendChild(textarea);
-        textarea.select();
+        area.select();
 
         document.execCommand("copy");
-        textarea.remove();
+        area.remove();
 
-        showToast("शायरी कॉपी हो गई ❤️");
+        toast("शायरी कॉपी हो गई ❤️");
     }
 }
 
 /* SHARE SHAYARI */
 
 async function shareText(text) {
-
     const data = {
         title: "Ishwar Shayari",
-        text: text + "\n\n— Ishwar Shayari"
+        text: text + "\n\n— Ishwar Shayari",
+        url: location.href
     };
 
     if (navigator.share) {
@@ -418,58 +448,71 @@ async function shareText(text) {
             console.log("Share cancelled");
         }
     } else {
-        await copyText(data.text);
-        showToast("शायरी कॉपी हुई, अब शेयर करें");
+        copyText(data.text + "\n" + data.url);
     }
 }
 
-/* DOWNLOAD SHAYARI IMAGE */
+/* DESIGNER MODAL */
 
-function downloadQuote(text, category = "शायरी") {
+function openDesigner() {
+    $("designerModal").classList.add("open");
+}
 
-    const canvas = document.createElement("canvas");
+function closeDesigner() {
+    $("designerModal").classList.remove("open");
+}
 
-    canvas.width = 1080;
-    canvas.height = 1350;
+/* CREATE SHAYARI IMAGE */
 
+function drawQuote(item, theme) {
+    const canvas = $("canvasPreview");
     const ctx = canvas.getContext("2d");
 
+    canvas.width = 1080;
+    canvas.height = 1080;
+
+    const themes = {
+        orange: ["#382418", "#d66a0b", "#ffe3aa"],
+        pink: ["#48102c", "#ce327c", "#ffd0e7"],
+        night: ["#071b37", "#16547a", "#9bdcff"],
+        sunset: ["#5d214c", "#e66a4c", "#ffdb9b"]
+    };
+
+    const colors = themes[theme] || themes.orange;
+
     const gradient = ctx.createLinearGradient(
-        0, 0, 1080, 1350
+        0, 0, 1080, 1080
     );
 
-    gradient.addColorStop(0, "#17152b");
-    gradient.addColorStop(0.5, "#51246e");
-    gradient.addColorStop(1, "#a52b78");
+    gradient.addColorStop(0, colors[0]);
+    gradient.addColorStop(1, colors[1]);
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 1080, 1350);
+    ctx.fillRect(0, 0, 1080, 1080);
 
-    ctx.strokeStyle = "#ff75b8";
-    ctx.lineWidth = 8;
-    ctx.strokeRect(35, 35, 1010, 1280);
+    ctx.strokeStyle = colors[2];
+    ctx.lineWidth = 5;
+
+    ctx.strokeRect(35, 35, 1010, 1010);
+    ctx.strokeRect(53, 53, 974, 974);
 
     ctx.textAlign = "center";
 
-    ctx.fillStyle = "#ff8bc1";
-    ctx.font = "bold 65px sans-serif";
-    ctx.fillText("Ishwar Shayari", 540, 180);
+    ctx.fillStyle = colors[2];
+    ctx.font = "bold 60px sans-serif";
+    ctx.fillText("Ishwar Shayari", 540, 170);
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 32px sans-serif";
-    ctx.fillText(category + " शायरी", 540, 280);
+    ctx.font = "bold 43px sans-serif";
 
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 46px sans-serif";
-
-    const words = text.split(/\s+/);
+    const words = item.text.split(/\s+/);
     const lines = [];
     let line = "";
 
     words.forEach(word => {
         const test = line ? line + " " + word : word;
 
-        if (ctx.measureText(test).width > 850) {
+        if (ctx.measureText(test).width > 850 && line) {
             lines.push(line);
             line = word;
         } else {
@@ -479,53 +522,94 @@ function downloadQuote(text, category = "शायरी") {
 
     if (line) lines.push(line);
 
-    const lineHeight = 75;
-    const totalHeight = lines.length * lineHeight;
-    let y = Math.max(430, (1350 - totalHeight) / 2);
+    const shownLines = lines.slice(0, 11);
+    const lineHeight = 65;
 
-    lines.slice(0, 10).forEach(item => {
-        ctx.fillText(item, 540, y, 900);
-        y += lineHeight;
+    const start =
+        535 - (shownLines.length - 1) * lineHeight / 2;
+
+    shownLines.forEach((value, index) => {
+        ctx.fillText(
+            value,
+            540,
+            start + index * lineHeight
+        );
     });
 
-    ctx.fillStyle = "#ffb2d5";
-    ctx.font = "35px sans-serif";
-    ctx.fillText("हर एहसास, अल्फ़ाज़ों में... ❤️", 540, 1190);
+    ctx.fillStyle = colors[2];
+    ctx.font = "34px sans-serif";
+
+    ctx.fillText(
+        "हर एहसास, अल्फ़ाज़ों में... ❤️",
+        540,
+        900
+    );
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "25px sans-serif";
+    ctx.fillText("Ishwar Shayari", 540, 970);
+
+    canvas.style.display = "block";
+
+    return canvas;
+}
+
+/* DOWNLOAD IMAGE */
+
+function downloadImage(item, theme = "orange") {
+    const canvas = drawQuote(item, theme);
 
     const link = document.createElement("a");
 
-    link.download = "ishwar-shayari.png";
+    link.download = "ishwar-shayari-" + item.id + ".png";
     link.href = canvas.toDataURL("image/png");
 
     link.click();
 
-    showToast("शायरी इमेज डाउनलोड हो गई ❤️");
+    toast("शायरी इमेज डाउनलोड हो गई ❤️");
 }
 
-/* SHAYARI DESIGNER */
+/* DESIGNER DOWNLOAD */
 
-function openDesigner() {
+function makeDesign() {
+    const text = $("designText").value.trim();
 
-    const text = prompt("अपनी शायरी लिखें:");
-
-    if (text && text.trim()) {
-        downloadQuote(text.trim());
+    if (!text) {
+        toast("पहले शायरी लिखें");
+        return;
     }
+
+    const item = {
+        id: "custom",
+        text: text,
+        category: "शायरी"
+    };
+
+    downloadImage(item, $("designTheme").value);
 }
 
 /* SEARCH ENTER KEY */
 
-const searchInput = document.getElementById("searchInput");
+$("searchInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        searchShayari();
+    }
+});
 
-if (searchInput) {
-    searchInput.addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-            searchShayari();
-        }
-    });
-}
+/* MODAL EVENTS */
+
+$("designerModal").addEventListener("click", event => {
+    if (event.target.id === "designerModal") {
+        closeDesigner();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeDesigner();
+    }
+});
 
 /* START WEBSITE */
 
 loadShayari();
-
